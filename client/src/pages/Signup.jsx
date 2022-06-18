@@ -29,7 +29,7 @@ const Signup = () => {
         // console.log(name)
         // console.log(email)
 
-        const res = await fetch("/register", {
+        const res = await fetch("/register/user", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({

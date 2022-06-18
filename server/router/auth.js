@@ -188,4 +188,70 @@ router.post('/login/mentor', async (req, res) => {
 });
 
 
+
+
+//about us
+
+router.get('/about', Authenticate, (req, res) => {
+    // console.log("about");
+    // console.log(req.rootUser);
+    res.send(req.rootUser);
+
+});
+
+
+
+// get data
+router.get('/getdata', Authenticate, (req, res) => {
+    console.log("contact test");
+    // console.log(req.rootUser);
+    res.send(req.rootUser);
+
+});
+
+
+//contact data
+router.post('/contact', Authenticate, async (req, res) => {
+    try {
+
+        const { name, email, message } = req.body;
+        console.log(req.body);
+
+        if (!name || !email || !message) {
+            console.log(`please fill the complete form `);
+            alert('please fill the complete form')
+            return res.json({ error: "please fill the complete form " })
+        }
+
+        const userContact = await User.findOne({_id:req.userID})
+
+        console.log(userContact);
+
+        if (userContact) {
+            const userMessage = await userContact.addMessage(name, email, message);
+
+            await userContact.save();
+            res.status(201).json({ message: "contacted.." })
+        }
+
+
+    } catch (err) {
+        console.log(err);
+    }
+
+});
+
+
+
+
+
+router.get('/logout', Authenticate, (req, res) => {
+    console.log("logout");
+    // console.log(req.rootUser);
+    res.clearCookie('jwtoken', {path:'/'});
+    res.status(200).send("user logout");
+
+});
+
+
 module.exports = router;

@@ -26,7 +26,7 @@ const Login = () => {
         // console.log(email);
         // console.log(password);
 
-        const res = await fetch("/login", {
+        const res = await fetch("/login/user", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({

@@ -24,6 +24,24 @@ const userSchema = new mongoose.Schema({
         default: Date.now
     },
 
+    messages: [
+        {
+            name: {
+                type: String
+                // required: ture
+            },
+            email: {
+                type: String
+                // required: ture
+            },
+            message: {
+                type: String,
+                // required: ture
+            }
+        
+        }
+    ],
+
     tokens: [
         {
             token: {
@@ -48,6 +66,20 @@ userSchema.pre('save', async function(next) {
     }
     next();
 });
+
+
+
+//message
+userSchema.methods.addMessage = async function (name, email, message){
+    try{
+        this.messages = this.messages.concat({name, email, message});
+        await this.save();
+        return(this.message);
+
+    }catch{
+        console.log("error inside addMessage");
+    }
+}
 
 
 
