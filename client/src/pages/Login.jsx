@@ -19,7 +19,7 @@ const Login = () => {
         setUser({ ...user, [name]: value })
     }
 
-    const PostData = async (e) => {
+    const PostDataUser = async (e) => {
         e.preventDefault();
 
         const { email, password } = user;
@@ -50,6 +50,40 @@ const Login = () => {
         }
 
     }
+
+
+    const PostDataMentor = async (e) => {
+        e.preventDefault();
+
+        const { email, password } = user;
+        // console.log(email);
+        // console.log(password);
+
+        const res = await fetch("/login/mentor", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+                email, password
+            })
+        });
+
+
+        await res.json();
+        if (res.status === 200) {
+
+            dispatch({type:"USER", payload:true});
+
+            console.log("login successfully");
+            navigate('/')
+        }
+
+        else {
+            window.alert(`server error: ${res.status}`);
+            console.log("error");
+        }
+
+    }
+
 
     return (
         <>
@@ -89,8 +123,13 @@ const Login = () => {
                                 </div>
 
                                 <div className="form-group form-button">
-                                    <input type="submit" name="signin" className="form-submit" value="Login"
-                                        onClick={PostData}
+                                    <input type="submit" name="signin" className="form-submit" value="Login as user"
+                                        onClick={PostDataUser}
+                                    />
+                                </div>
+                                <div className="form-group form-button">
+                                    <input type="submit" name="signin" className="form-submit" value="Login as mentor"
+                                        onClick={PostDataMentor}
                                     />
                                 </div>
                             </form>

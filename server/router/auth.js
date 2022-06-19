@@ -6,6 +6,7 @@ const cookies = require('cookie-parser')
 
 router.use(cookies())
 const Authenticate = require('../middlewares/Authenticate')
+const Authenticatementor = require('../middlewares/Authenticatementor')
 
 
 // const cors = require('cors');
@@ -202,10 +203,17 @@ router.get('/about', Authenticate, (req, res) => {
 
 
 // get data
-router.get('/getdata', Authenticate, (req, res) => {
+router.get('/getdata/user', Authenticate, (req, res) => {
     console.log("contact test");
     // console.log(req.rootUser);
     res.send(req.rootUser);
+
+});
+
+router.get('/getdata/mentor', Authenticatementor, (req, res) => {
+    console.log("contact test");
+    // console.log(req.rootUser);
+    res.send(req.rootMentor);
 
 });
 

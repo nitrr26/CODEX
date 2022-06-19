@@ -21,14 +21,9 @@ const Signup = () => {
     }
 
 
-    const PostData = async (e) => {
+    const PostDataUser = async (e) => {
         e.preventDefault();
-
         const { name, email, phone, work, password, cpassword } = user;
-
-        // console.log(name)
-        // console.log(email)
-
         const res = await fetch("/register/user", {
             method: "POST",
             headers: { "content-type": "application/json" },
@@ -36,23 +31,6 @@ const Signup = () => {
                 name, email, phone, work, password, cpassword
             })
         });
-
-        // const data = await res.json();
-        // if(res.status === 423 || res.status === 422){
-        //     window.alert("server error");
-        //     console.log("error");
-        // }
-        // else if(!data){
-        //     window.alert("data err");
-        // }
-        // else{
-        //     window.alert("done");
-        //     console.log("done");
-
-        //     // navigate.push("/login");
-        //     navigate('/login')
-        // }
-
 
         const data = await res.json();
         if (res.status === 201) {
@@ -66,6 +44,36 @@ const Signup = () => {
         }
 
     }
+
+
+
+
+    const PostDataMentor = async (e) => {
+        e.preventDefault();
+        const { name, email, phone, work, password, cpassword } = user;
+        const res = await fetch("/register/mentor", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+                name, email, phone, work, password, cpassword
+            })
+        });
+
+        const data = await res.json();
+        if (res.status === 201) {
+            console.log("Registered successfully");
+            navigate('/login')
+        }
+
+        else {
+            window.alert(`server error: ${res.status}`);
+            console.log("error");
+        }
+
+    }
+
+
+
 
     return (
         <>
@@ -133,8 +141,13 @@ const Signup = () => {
                                 </div>
 
                                 <div className="form-group form-button">
-                                    <input type="submit" name="signup" className="form-submit" value="Register"
-                                        onClick={PostData}
+                                    <input type="submit" name="signup" className="form-submit" value="Register as user"
+                                        onClick={PostDataUser}
+                                    />
+                                </div>
+                                <div className="form-group form-button">
+                                    <input type="submit" name="signup" className="form-submit" value="Register as mentor"
+                                        onClick={PostDataMentor}
                                     />
                                 </div>
 
