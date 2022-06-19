@@ -8,9 +8,12 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Logout from './pages/Logout';
+
+import ModOfConvo from './pages/ModeOfConvo';
 import Error404 from './pages/error404';
 
 import { initialSatate, reducer } from '../src/reducer/UseReducer';
+import Guidence from './pages/Guidence';
 
 
 export const UserContext = createContext();
@@ -25,6 +28,9 @@ const Routing = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Signup />} />
       <Route path="/logout" element={<Logout />} />
+      <Route path="/moc" element={<ModOfConvo />} />
+      <Route path="/guidline" element={<Guidence />} />
+      {/* <Route path="/logout" element={<Logout />} /> */}
       <Route path="*" element={<Error404 />} />
     </Routes>
 
@@ -41,8 +47,10 @@ const App = () => {
         <Router>
           <Navbar />
           <Routing />
+          {/* <ModOfConvo /> */}
         </Router>
       </ UserContext.Provider>
+
     </>
   )
 }

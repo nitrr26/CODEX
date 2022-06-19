@@ -41,7 +41,7 @@ const Login = () => {
             dispatch({type:"USER", payload:true});
 
             console.log("login successfully");
-            navigate('/')
+            navigate('/guidline')
         }
 
         else {
@@ -74,7 +74,7 @@ const Login = () => {
             dispatch({type:"USER", payload:true});
 
             console.log("login successfully");
-            navigate('/')
+            navigate('/moc')
         }
 
         else {

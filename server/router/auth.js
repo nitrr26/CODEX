@@ -205,14 +205,12 @@ router.get('/about', Authenticate, (req, res) => {
 // get data
 router.get('/getdata/user', Authenticate, (req, res) => {
     console.log("contact test");
-    // console.log(req.rootUser);
     res.send(req.rootUser);
 
 });
 
 router.get('/getdata/mentor', Authenticatementor, (req, res) => {
     console.log("contact test");
-    // console.log(req.rootUser);
     res.send(req.rootMentor);
 
 });

@@ -18,7 +18,9 @@ const mentorSchema = new mongoose.Schema({
     cpassword: {
         type: String
     },
-
+    profession:{
+        type:String
+    },
     date: {
         type: Date,
         default: Date.now
